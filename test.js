@@ -61,10 +61,10 @@ function pick(questions, num) {
 
 function get_answers(question) {  //style="zoom: 200%"
     return [
-        question.picture_a ? `<img src="Fragen/svgs/${question.picture_a}.svg" />` : `<span class="text_opt">${question.answer_a}</span>`,
-        question.picture_b ? `<img src="Fragen/svgs/${question.picture_b}.svg" />` : `<span class="text_opt">${question.answer_b}</span>`,
-        question.picture_c ? `<img src="Fragen/svgs/${question.picture_c}.svg" />` : `<span class="text_opt">${question.answer_c}</span>`,
-        question.picture_d ? `<img src="Fragen/svgs/${question.picture_d}.svg" />` : `<span class="text_opt">${question.answer_d}</span>`
+        question.picture_a ? `<img class="img" src="Fragen/svgs/${question.picture_a}.svg" />` : `<span class="text_opt">${question.answer_a}</span>`,
+        question.picture_b ? `<img class="img" src="Fragen/svgs/${question.picture_b}.svg" />` : `<span class="text_opt">${question.answer_b}</span>`,
+        question.picture_c ? `<img class="img" src="Fragen/svgs/${question.picture_c}.svg" />` : `<span class="text_opt">${question.answer_c}</span>`,
+        question.picture_d ? `<img class="img" src="Fragen/svgs/${question.picture_d}.svg" />` : `<span class="text_opt">${question.answer_d}</span>`
     ]
 }
 
@@ -84,17 +84,22 @@ function permute_answer(arr) {
 
 
 function html_answers(answers, correct, number, online) {
-    let result = ""
+    let result = '<div class="answer_container">'
     for (let i = 0; i < answers.length; i++) {
         let opt = `data-option ="${i == correct - 1 ? "correct" : "incorrect"}"`
         if (online) {
-            result += `<div class="opt_lab"><label for="${number}-${i}"><input class="option" ${opt} type="radio" id="${number}-${i}" name="${number}" value="${number}-${i}" />
-            ${answers[i]}</label></div>`
+            result += `<div class="opt_lab">
+                            <label for="${number}-${i}">
+                                <input class="option" ${opt} type="radio" id="${number}-${i}" name="${number}" value="${number}-${i}" />
+                                ${answers[i]}
+                            </label>
+                        </div>`
         } else {
             result += `<li class="option" ${opt}>${answers[i]}</li>`
         }
     }
     if (!online) result = `<ol>${result}</ol>`
+    result += '</div>'
     return result
 }
 
@@ -128,12 +133,20 @@ function html_questions(questions, online) {
                 case 'NF106':
                 case 'NG302': badQuestion = true
             }
-            if (isFirefox && badQuestion) picture = `<div><img  src="Fragen/svgs/${question.picture_question}.png" /></div>`
-            else picture = `<div><img  src="Fragen/svgs/${question.picture_question}.svg" /></div>`
+            // Firefox has problems with svg files
+            picture = `<div class="question-img-container"><img class="question-img" src="Fragen/svgs/${question.picture_question}.`
+            if (isFirefox && badQuestion) picture += "png"
+            else picture += "svg"
+            picture += `" /></div>`
         }
         answer_html += `<li> <strong class="title">${question.number} </strong> (${res.correct}) ${res.answers[res.correct - 1]}</li>`
         let correct_answer = ` data-correct="${res.correct}"`
-        question_html += `<div data-question="${question.number}" class="quest"><li${correct_answer} class="question"> <strong class="title">${question.number} </strong>${question.question} ${picture} ${ans_html}</li></div>`
+        question_html += `<div data-question="${question.number}" class="quest">
+                                <li${correct_answer} class="question">
+                                    <strong class="title">[${question.number}]</strong>
+                                    ${question.question} ${picture} ${ans_html}
+                                </li>
+                          </div>`
     }
     return { questions: question_html, answer: answer_html }
 }

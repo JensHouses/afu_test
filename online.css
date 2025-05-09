@@ -7,12 +7,27 @@ ol {
     padding-left: 5px;
 }
 
-img {
+.img {
     vertical-align: middle;
     margin: 5pt;
     zoom: 200%;
     max-height: 45%;
-    max-width: 45%;
+    max-width: 65%;
+    border-bottom: #555555 2px solid;
+}
+
+.question-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+.question-img {
+    vertical-align: middle;
+    margin: 5pt;
+    zoom: 200%;
 }
 
 input {
@@ -28,10 +43,28 @@ html {
     font-size: 15pt !important;
 }
 
-
+.answer_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 2em;
+    margin-right: 2em;
+    border-top: #555555 1px outset;
+    margin-top: 1rem ;
+}
+@media (max-width: 900px) {
+    .answer_container {
+        grid-template-columns: 1fr;
+    }
+}
 .opt_lab {
-    margin: 0.7em 0 0.7em 0;
+    margin: 0.7em;
+    padding: 0.5em;
     align-items: center;
+    border-radius: 5px;
+    border: #ddd 1px solid;
+    background-color: white;
+    box-shadow: #ddd 1px 1px 5px 0px;
+
 }
 
 /* https://stackoverflow.com/questions/23472949/prevent-wrapping-of-text-below-radio-buttons */
@@ -49,6 +82,17 @@ input[type=radio] {
 
 .question {
     margin-left: 2em;
+    margin-right: 2em;
+    .title {
+        font-size: 8pt;
+        font-weight: bold;
+        color: #2a73cc;
+        display: table-caption;
+        margin-top: 10px;
+    }
+    .title:hover {
+        font-size: large;
+    }
 }
 
 
@@ -72,7 +116,10 @@ input[type=radio] {
 }
 
 .quest {
-    border-left: 6pt solid transparent
+    border: 1pt solid gray;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: white;
 }
 
 #result {
@@ -88,7 +135,6 @@ input[type=radio] {
 
     padding: 0.5em;
     align-items: center;
-    display: hidden;    
 }
 
 .smiley {
@@ -116,6 +162,7 @@ input[type=radio] {
     font-family: arial, "lucida console", sans-serif;   
     padding: 0.5em;
     align-items: center;
+
 }
 
 .no_answer {
