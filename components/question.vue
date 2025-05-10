@@ -46,8 +46,8 @@ const latexQuestion = replaceLatexStrings(props.question.question)
 <div>
 	<UCard variant="subtle" class="m-5"
 	:class="{
-		'bg-green-100': answered_correctly && props.showResults,
-		'bg-red-100': !answered_correctly && props.showResults
+		'bg-green-100 dark:bg-green-900': answered_correctly && props.showResults,
+		'bg-red-100 dark:bg-red-900': !answered_correctly && props.showResults
 	}">
 		<template #header class="pl-2">
 			<div style="display: flex; align-items: center;">
@@ -59,7 +59,7 @@ const latexQuestion = replaceLatexStrings(props.question.question)
 			<nuxtImg
 				:src="'Fragen/svgs/' + question.picture_question + '.svg'"
 				densities="x1 x2"
-				class="h-full mx-auto"/>
+				class="h-full mx-auto dark:invert"/>
 		</div>
 		<!-- Antworten evtl. mit Bildern-->
 		<template #footer>
@@ -83,7 +83,7 @@ const latexQuestion = replaceLatexStrings(props.question.question)
 						<nuxtImg
 							:src="'Fragen/svgs/' + answers.pictures[shuffled_idx] + '.svg'"
 							densities="x1 x2"
-							class="h-full mx-auto"
+							class="h-full mx-auto dark:invert"
 						/>
 					</div>
 				<div v-else v-html="replaceLatexStrings(answers.texts[shuffled_idx])">

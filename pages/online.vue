@@ -1,12 +1,16 @@
    <template>
+		 <div class="absolute top-0 right-0 m-5 fixed z-10 bg-green-50 p-2 rounded">
+			 <p class="text-black">Zeige Erg.<u-switch v-model="showResults"/></p>
+		 </div>
      <div class="online-page">
        <h1>Online Prüfungsfragen</h1>
        <p>Beginne mit den Prüfungsfragen, um dich optimal auf die Amateurfunkprüfung vorzubereiten.</p>
 
 			 <div v-for="section in allSections" >
-			 <upper-section :title="section.title" :sections="section.sections" />
+			 <upper-section :title="section.title" :sections="section.sections" :showResults="showResults"/>
 			 </div>
 			 <button @click="startQuestions">Fragen starten</button>
+
 			 <question :question="exampleQuestion" :show-results="true"/>
 			 <question :question="exampleQuestion2" :show-results="true" />
 			 <question :question="exampleQuestion3" :show-results="true" />
@@ -21,6 +25,7 @@
 
 	 const questionStore = useQuestionStore();
 	 const allSections = questionStore.getAllSections;
+	 const showResults = ref(false);
 
 	 // Funktion zum Starten der Fragen
 	 const startQuestions = () => {

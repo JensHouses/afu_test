@@ -17,7 +17,7 @@
 
 <template>
 	<div>
-		<header>
+		<header class="bg-default fixed w-full z-9">
 			<UNavigationMenu
 				highlight
 				highlight-color="primary"
@@ -27,7 +27,7 @@
 			/>
 		</header>
 
-		<main>
+		<main class="pt-8">
 			<NuxtPage />
 		</main>
 

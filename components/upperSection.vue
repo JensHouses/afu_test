@@ -8,6 +8,11 @@ title: {
 		type: Object,
 		required: true,
 	},
+	showResults: {
+		type: Boolean,
+		required: false,
+		default: false
+	}
 });
 const items = props.sections.map((section:any) => {
 	return {
@@ -26,7 +31,7 @@ const items = props.sections.map((section:any) => {
 		<template #body="{ item }">
 			<div v-for="section in item.sections" :key="section.id">
 
-				<middle-section :title="section.title" :questions="section.questions" />
+				<middle-section :title="section.title" :questions="section.questions" :showResults="props.showResults"/>
 			</div>
 		</template>
 	</u-accordion>

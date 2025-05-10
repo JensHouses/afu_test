@@ -1,5 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  hooks: {
+    'modules:done': (installedModules) => {
+      console.log('✅ Geladene Nuxt-Module:');
+      installedModules?.forEach((mod: any, i: number) => {
+        console.log(`  [${i + 1}]`, mod?.meta?.name || 'Unbekanntes Modul');
+      });
+
+    }
+  },
   app: {
     head: {
       title: 'AFU - Test',
@@ -24,5 +33,6 @@ export default defineNuxtConfig({
     '~/plugins/katex.client.ts',
   ],
   ssr: false,
+
 
 })
