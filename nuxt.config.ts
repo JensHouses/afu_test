@@ -35,9 +35,6 @@ image: {
        xl: 1280,
        xxl: 1536
    },
-   domains: [],
-   dir: 'public',
-   presets: {},
    staticFilename: '[publicPath]/images/[name]-[hash][ext]',
    baseURL: process.env.NUXT_APP_BASE_URL || '/'
 },
